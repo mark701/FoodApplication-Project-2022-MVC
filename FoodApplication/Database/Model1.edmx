@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoodDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Coustmer">
+          <Key>
+            <PropertyRef Name="U_ID" />
+          </Key>
+          <Property Name="U_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="U_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="U_image" Type="nvarchar(max)" />
+          <Property Name="U_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="U_Manger" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hisory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="P_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_image" Type="nvarchar(max)" />
+          <Property Name="U_ID" Type="int" Nullable="false" />
+          <Property Name="P_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="P_image" Type="nvarchar(max)" />
+          <Property Name="P_price" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Hisory__P_ID__29572725">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Hisory" Type="Self.Hisory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Hisory">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hisory__U_ID__286302EC">
+          <End Role="Coustmer" Type="Self.Coustmer" Multiplicity="1" />
+          <End Role="Hisory" Type="Self.Hisory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coustmer">
+              <PropertyRef Name="U_ID" />
+            </Principal>
+            <Dependent Role="Hisory">
+              <PropertyRef Name="U_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodDataBaseModelStoreContainer">
+          <EntitySet Name="Coustmer" EntityType="Self.Coustmer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hisory" EntityType="Self.Hisory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Hisory__P_ID__29572725" Association="Self.FK__Hisory__P_ID__29572725">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Hisory" EntitySet="Hisory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hisory__U_ID__286302EC" Association="Self.FK__Hisory__U_ID__286302EC">
+            <End Role="Coustmer" EntitySet="Coustmer" />
+            <End Role="Hisory" EntitySet="Hisory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoodDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Coustmer">
+          <Key>
+            <PropertyRef Name="U_ID" />
+          </Key>
+          <Property Name="U_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="U_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="U_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="U_Manger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hisories" Relationship="Self.FK__Hisory__U_ID__286302EC" FromRole="Coustmer" ToRole="Hisory" />
+        </EntityType>
+        <EntityType Name="Hisory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="P_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_ID" Type="Int32" Nullable="false" />
+          <Property Name="P_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Coustmer" Relationship="Self.FK__Hisory__U_ID__286302EC" FromRole="Hisory" ToRole="Coustmer" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Hisory__P_ID__29572725" FromRole="Hisory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="P_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hisories" Relationship="Self.FK__Hisory__P_ID__29572725" FromRole="Product" ToRole="Hisory" />
+        </EntityType>
+        <Association Name="FK__Hisory__U_ID__286302EC">
+          <End Role="Coustmer" Type="Self.Coustmer" Multiplicity="1" />
+          <End Role="Hisory" Type="Self.Hisory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coustmer">
+              <PropertyRef Name="U_ID" />
+            </Principal>
+            <Dependent Role="Hisory">
+              <PropertyRef Name="U_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hisory__P_ID__29572725">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Hisory" Type="Self.Hisory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Hisory">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coustmers" EntityType="Self.Coustmer" />
+          <EntitySet Name="Hisories" EntityType="Self.Hisory" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK__Hisory__U_ID__286302EC" Association="Self.FK__Hisory__U_ID__286302EC">
+            <End Role="Coustmer" EntitySet="Coustmers" />
+            <End Role="Hisory" EntitySet="Hisories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hisory__P_ID__29572725" Association="Self.FK__Hisory__P_ID__29572725">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Hisory" EntitySet="Hisories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoodDataBaseModelStoreContainer" CdmEntityContainer="FoodDataBaseEntities">
+          <EntitySetMapping Name="Coustmers">
+            <EntityTypeMapping TypeName="FoodDataBaseModel.Coustmer">
+              <MappingFragment StoreEntitySet="Coustmer">
+                <ScalarProperty Name="U_Name" ColumnName="U_Name" />
+                <ScalarProperty Name="U_ID" ColumnName="U_ID" />
+                <ScalarProperty Name="U_email" ColumnName="U_email" />
+                <ScalarProperty Name="U_image" ColumnName="U_image" />
+                <ScalarProperty Name="U_password" ColumnName="U_password" />
+                <ScalarProperty Name="U_Manger" ColumnName="U_Manger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hisories">
+            <EntityTypeMapping TypeName="FoodDataBaseModel.Hisory">
+              <MappingFragment StoreEntitySet="Hisory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="P_name" ColumnName="P_name" />
+                <ScalarProperty Name="p_image" ColumnName="p_image" />
+                <ScalarProperty Name="U_ID" ColumnName="U_ID" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="FoodDataBaseModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="P_image" ColumnName="P_image" />
+                <ScalarProperty Name="P_price" ColumnName="P_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
