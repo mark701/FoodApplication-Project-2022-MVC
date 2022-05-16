@@ -1,0 +1,152 @@
+﻿@model FoodApplication.Database.Product
+@{
+    ViewBag.Title = "Edit Food";
+    var userdata = ViewBag.Userdata;
+    var editfood = ViewBag.EditFood;
+}
+
+
+<!-- Banner Area Starts -->
+<section class="banner-area banner-area2 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1><i>Edit Food</i></h1>
+                <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Area End -->
+
+<br />
+<br />
+<br />
+<br />
+<section>
+
+    <div class="container">
+        <div class="row ">
+            <div class="single-food">
+
+                <div class="food-img">
+                    <img src="~/assets/images/Food/@editfood.P_image" style="height:200px" alt="">
+                </div>
+            </div>
+            <div class="food-content">
+                <div class="d-flex justify-content-between">
+
+                    <h5>@editfood.P_Name</h5>
+
+                    <span class="style-change">@editfood.P_price$</span>
+                </div>
+                <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+</section>
+
+
+@*<div class="formcontainer">
+        <div class="container containers">
+
+            <div class="form-group">
+                <label class="control-label col-md-2">FoodName</label>
+                <div class="col-md-10">
+                    <input type="text" name="FoodName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Price</label>
+                <div class="col-md-10">
+                    <input type="text" name="FoodName" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.P_image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="P_image" id="U_image" accept=".jpg, .jpeg, .png" />
+                    @Html.ValidationMessageFor(model => model.P_image, "", new { @class = "text-info" })
+
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="col-md-11">
+                <input type="submit" value="Edit Food" class="btn btn-default FButton" />
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+@using (Html.BeginForm("EditFood", "AlterFood", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formcontainer">
+        <div class="container containers">
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.P_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type='text' required readonly value="@Model.P_ID" name="P_ID" />
+                    @Html.ValidationMessageFor(model => model.P_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.P_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.P_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.P_price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.P_price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.P_image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="P_image" id="U_image" accept=".jpg, .jpeg, .png" />
+                    @Html.ValidationMessageFor(model => model.P_image, "", new { @class = "text-info" })
+
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="col-md-11">
+                <input type="submit" value="Edit Food" class="btn btn-default FButton" />
+            </div>
+        </div>
+    </div>
+}
