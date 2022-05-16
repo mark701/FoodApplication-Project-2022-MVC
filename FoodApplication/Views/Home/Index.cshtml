@@ -1,31 +1,102 @@
-﻿@{
+﻿@*@model IEnumerable<FoodApplication.Database.Product>*@
+@{
     ViewBag.Title = "Home Page";
+    //var homeFood = ((List<Product>)ViewData["homeFoodData"]);
+    var homeFood = ViewBag.HomeFood;
+    var userdata = ViewBag.UserData;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!-- Banner Area Starts -->
+<section class="banner-area text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>the most interesting food in the world</h6>
+                <h1>
+                    Discover the <span class="prime-color">flavors</span><br>
+                    <span class="style-change">of <span class="prime-color">food</span>fun</span>
+                </h1>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+<!-- Banner Area End -->
+<!-- Welcome Area Starts -->
+<section class="welcome-area section-padding2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+                <div class="welcome-img">
+                    <img src="~/assets/images/welcome-bg.png" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 align-self-center">
+                <div class="welcome-text mt-5 mt-md-0">
+                    <h3><span class="style-change">welcome</span> <br>to food fun</h3>
+                    <p class="pt-3">Created god gathered don't you yielding herb you had. And isn't, god was saw. Dominion. Great sixth for in unto was. Open can't tree am waters brought. Divide after there. Was.</p>
+                    <p>Created god gathered don't you yielding herb you had. And isn't, god was saw. Dominion. Great sixth for in unto was. Open can't tree waters brought. Divide after there. Was. Created god gathered don't you yielding herb you had. And isn't god.</p>
+                    <a href="#" class="template-btn mt-3">book a table</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+<!-- Welcome Area End -->
+<!-- Food Area starts -->
+<section class="food-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="section-top">
+                    <h3><span class="style-change">we serve</span> <br>delicious food</h3>
+                    <p class="pt-3">They're fill divide i their yielding our after have him fish on there for greater man moveth, moved Won't together isn't for fly divide mids fish firmament on net.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+            @foreach (var Food in homeFood)
+            {
+
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="single-food">
+                        <div class="food-img">
+                            <h1></h1>
+                            <img src="~/assets/images/Food/@Food.P_image" class="img-fluid" alt="">
+                        </div>
+                        <div class="food-content">
+                            <div class="d-flex justify-content-between">
+                                <h5>@Food.P_Name</h5>
+                                <span class="style-change">@Food.P_price$</span>
+                            </div>
+                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                            @Html.ActionLink("Buy", "BuyFood", "Buy", new { id = Food.P_ID }, new { @class = "btn btn-info  " })
+                            @*<input type="button" value="Create" onclick="location.href='@Url.Action("AddToCart", "Buy")'" />*@
+
+                            @*@Html.ActionLink("Add to cart", "AddToCart", "Buy", new { id = Food.P_ID }, new { @class = "btn btn-info  " })*@
+
+
+                            @if (userdata.U_Manger == "admin")
+                            {
+                                @Html.ActionLink("Edit", "EditFood", "AlterFood", new { id = Food.P_ID }, new { @class = "btn btn-info  " })
+                                @Html.ActionLink("Delete", "DeleteFood", "AlterFood", new { id = Food.P_ID }, new { @class = "btn btn-danger" })
+                            }
+
+                            @*<a asp-action="BuyFood" class=" btn btn-primary" asp-controller="Buy" asp-route-id="@Food.P_ID"><b>Buy</b></a>*@
+                            @*<button type="submit" class="btn-info ">Buy</button>*@
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+
+
+
+        </div>
     </div>
-</div>
+</section>
+<!-- Food Area End -->
