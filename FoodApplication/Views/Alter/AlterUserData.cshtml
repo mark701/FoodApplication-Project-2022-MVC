@@ -1,0 +1,108 @@
+﻿@model FoodApplication.Models.ViewUser
+@{
+    ViewBag.Title = "Settings";
+    var userdata = ViewBag.Userdata;
+}
+<section class="banner-area2   contact-bg text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1><i>ALter DATA</i></h1>
+                <p class="pt-2"><i>Change ur data  from here</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />
+<br />
+
+<section>
+    <div class="container containers">
+
+
+        <div class="">
+            <h4 style="color:black"><label><b>User Name : </b> @userdata.U_Name</label></h4>
+        </div>
+        <br />
+        <div class="">
+            <h4 style="color:black"><label><b>Email  : </b> @userdata.U_email</label></h4>
+        </div>
+        <br />
+        <div class="">
+            <h4 style="color:black"><label><b>Password : </b> @userdata.U_password</label></h4>
+        </div>
+
+        @if (@userdata.U_Manger != null)
+        {
+            <br />
+
+            <div class="">
+                <h4 style="color:black"><label><b>Manger : </b> @userdata.U_Manger</label></h4>
+            </div>
+        }
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+</section>
+@using (Html.BeginForm("AlterUserData", "Alter", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formcontainer">
+        <div class="container containers">
+            <h4>Coustmer</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.U_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.U_Name, new { htmlAttributes = new { @class = "form-control" }, @data_val = "true" })
+                    @Html.ValidationMessageFor(model => model.U_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.U_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.U_email, new { htmlAttributes = new { @class = "form-control", @data_val = "true" } })
+                    @Html.ValidationMessageFor(model => model.U_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.U_password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.U_password, new { htmlAttributes = new { @class = "form-control", type = "password", @data_val = "true" } })
+                    @Html.ValidationMessageFor(model => model.U_password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @if (userdata.U_Manger == "admin")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.U_Manger, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.U_Manger, new { htmlAttributes = new { @class = "form-control", type = "password", @data_val = "true" } })
+                        @Html.ValidationMessageFor(model => model.U_Manger, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.U_image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="U_image" id="U_image" accept=".jpg, .jpeg, .png" />
+                    @Html.ValidationMessageFor(model => model.U_image, "", new { @class = "text-info" })
+                    @*@Html.TextBoxFor(model => model.U_image, new { htmlAttributes = new { Type = "file", accept = ".jpg", @required = "required" } })*@
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="col-md-11">
+                <input type="submit" value="Sign up" class="btn btn-default FButton" />
+            </div>
+        </div>
+    </div>
+}
