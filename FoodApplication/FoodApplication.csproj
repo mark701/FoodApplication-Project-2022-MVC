@@ -182,7 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
+    <Folder Include="Database\" />
     <Folder Include="Views\Buy\" />
   </ItemGroup>
   <ItemGroup>
