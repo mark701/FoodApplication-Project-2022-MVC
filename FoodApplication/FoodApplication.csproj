@@ -119,8 +119,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig2.cs" />
+    <Compile Include="App_Start\BundleConfig3.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FilterConfig2.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
+    <Compile Include="Controllers\AlterController.cs" />
     <Compile Include="Controllers\AlterFoodController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,6 +178,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AlterFood\AddFood.cshtml" />
     <Content Include="Views\AlterFood\EditFood.cshtml" />
+    <Content Include="Views\Alter\AlterUserData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
