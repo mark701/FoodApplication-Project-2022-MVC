@@ -1,0 +1,68 @@
+﻿@*@model IEnumerable<FoodApplication.Database.Product>*@
+@*@model FoodApplication.Models.User*@
+@{
+    ViewBag.Title = "MenuFood";
+    var MenuFoodData = ViewBag.MenuFood;
+    var userdata = ViewBag.UserData;
+
+}
+
+<!-- Banner Area Starts -->
+<section class="banner-area2  menu-bg text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1><i>Our Menu</i></h1>
+                <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Area End -->
+<!-- Food Area starts -->
+<section class="food-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="section-top">
+                    <h3><span class="style-change">we serve</span> <br>delicious food</h3>
+                    <p class="pt-3">They're fill divide i their yielding our after have him fish on there for greater man moveth, moved Won't together isn't for fly divide mids fish firmament on net.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var Food in MenuFoodData)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-food">
+                        <div class="food-img">
+                            <h1></h1>
+                            <img src="~/assets/images/Food/@Food.P_image" class="img-fluid" alt="">
+                        </div>
+                        <div class="food-content">
+                            <div class="d-flex justify-content-between">
+                                <h5>@Food.P_Name</h5>
+                                <span class="style-change">@Food.P_price$</span>
+                            </div>
+                            <p class="pt-3 ">Face together given moveth divided form Of Seasons that fruitful.</p>
+                            @*<button type="submit" class="btn-info ">Buy</button>*@
+                            @Html.ActionLink("Buy", "BuyFood", "Buy", new { id = Food.P_ID }, new { @class = "btn btn-info  " })
+
+
+
+                            @if (userdata.U_Manger == "admin")
+                            {
+                                @Html.ActionLink("Edit", "EditFood", "AlterFood", new { id = Food.P_ID }, new { @class = "btn btn-info  " })
+                                @Html.ActionLink("Delete", "DeleteFood", "AlterFood", new { id = Food.P_ID }, new { @class = "btn btn-danger" })
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+<!-- Food Area End -->
