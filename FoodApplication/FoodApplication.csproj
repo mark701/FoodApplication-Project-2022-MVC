@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AlterController.cs" />
     <Compile Include="Controllers\AlterFoodController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
+    <Compile Include="Controllers\CoustmerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -183,6 +184,8 @@
     <Content Include="Views\AlterFood\EditFood.cshtml" />
     <Content Include="Views\Alter\AlterUserData.cshtml" />
     <Content Include="Views\Buy\BuyFood.cshtml" />
+    <Content Include="Views\Coustmer\SignUP.cshtml" />
+    <Content Include="Views\Coustmer\SignIN.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
