@@ -174,11 +174,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AlterFood\AddFood.cshtml" />
     <Content Include="Views\AlterFood\EditFood.cshtml" />
+    <Content Include="Views\Buy\BuyFood.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Buy\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
