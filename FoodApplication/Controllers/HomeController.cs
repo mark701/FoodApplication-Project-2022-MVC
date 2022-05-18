@@ -39,7 +39,6 @@ namespace FoodApplication.Controllers
 
             List<Product> homeFood = foodDB.Products.ToList();
             /*var Sproduct = database.Products.Where(name => name.P_ID == "0xC1" && name.P_price==12);*/
-            /*var Sproduct2 = database.Products.Find("0xc1");*/
             mymodel.Product = homeFood;
             //mymodel.UserData = user;
 
