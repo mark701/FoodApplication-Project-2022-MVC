@@ -52,7 +52,7 @@ namespace FoodApplication.Controllers
 
         }
         [HttpPost]
-        public ActionResult SumbitOrder(CreditCard card, string P_ID)//bug in insert  database
+        public ActionResult SumbitOrder(CreditCard card, string P_ID)
         {
             ViewBag.Userdata = DataUser.user;
             if (card != null)
