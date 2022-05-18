@@ -27,10 +27,7 @@ namespace FoodApplication.Controllers
         public ActionResult Index()
         {
 
-            if (!DataUser.user.IsLogin)
-            {
 
-            }
 
             //DataUser.user = user;
 
