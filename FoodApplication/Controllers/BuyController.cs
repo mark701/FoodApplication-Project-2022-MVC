@@ -69,7 +69,7 @@ namespace FoodApplication.Controllers
 
 
         }
-        public void GetDataOrder(string P_ID) //bug in insert  database
+        public void GetDataOrder(string P_ID) 
         {
             OrderBuy = BuyFoodDB.Products.Find(int.Parse(P_ID));
 
