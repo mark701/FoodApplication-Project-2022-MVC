@@ -92,6 +92,7 @@ namespace FoodApplication.Controllers
                     U_image = DataUser.user.U_image,
                     U_Manger = DataUser.user.U_Manger,
                     U_password = DataUser.user.U_password,
+                    U_ID=DataUser.user.U_ID
                 };
 
                 AlterDB.Entry(updatedata).State = EntityState.Modified;
