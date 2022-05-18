@@ -51,12 +51,12 @@ namespace FoodApplication.Controllers
 
                 GetUserData = new Coustmer();
 
-                GetUserData = UserDB.Coustmers.Where(e => e.U_email == model.U_email).SingleOrDefault();
+                GetUserData = UserDB.Coustmers.Where(e => e.U_email == model.U_email).SingleOrDefault(); //serach by email in data of user
 
-                if (GetUserData != null && GetUserData.U_password == model.U_password)
+                if (GetUserData != null && GetUserData.U_password == model.U_password)//check if user and password is in data base
                 {
 
-                    SetData();
+                    SetData();//add data to view session
                     ViewBag.Userdata = DataUser.user;
 
                     return RedirectToAction("Index", "Home");

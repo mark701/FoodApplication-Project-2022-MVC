@@ -21,24 +21,24 @@ namespace FoodApplication.Controllers
 
 
             //mapper = AutoMapConfig.Mapper;
-            FoodDB = new FoodDataBaseEntities();
+            FoodDB = new FoodDataBaseEntities(); // make  object from database
 
         }
         // GET: AlterFood
         [HttpGet]
 
-        public ActionResult DeleteFood(string id)
+        public ActionResult DeleteFood(string id) //get data of food to delete it
         {
             if (id != null && DataUser.user.U_Manger == "admin")
             {
-                alterProduct = FoodDB.Products.Find(int.Parse(id));
-                FoodDB.Products.Remove(alterProduct);
-                AlterFoodImage(alterProduct.P_image, null);
+                alterProduct = FoodDB.Products.Find(int.Parse(id)); //search in databae  to get the food
+                FoodDB.Products.Remove(alterProduct); //delete food data form database
+                AlterFoodImage(alterProduct.P_image, null); // delete image of food from its folder
                 FoodDB.SaveChanges();
             }
             return RedirectToAction("../Home/Index");
         }
-        public void AlterFoodImage([Optional] string OldDataImage, [Optional] HttpPostedFileBase newDataimage)
+        public void AlterFoodImage([Optional] string OldDataImage, [Optional] HttpPostedFileBase newDataimage) //update image if  he add new image  and delete old image
         {
             if (newDataimage != null)
             {
@@ -68,7 +68,7 @@ namespace FoodApplication.Controllers
         public ActionResult AddFood()
         {
             ViewBag.Userdata = DataUser.user;
-            if (DataUser.user.U_Manger == "admin" && DataUser.user.IsLogin)
+            if (DataUser.user.U_Manger == "admin" && DataUser.user.IsLogin) //check if  login and  he is admin user
             {
                 return View();
             }
@@ -77,7 +77,7 @@ namespace FoodApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddFood(Food food)
+        public ActionResult AddFood(Food food) //add food data that he insert in view
         {
             Product addFood = new Product()
             {
@@ -85,14 +85,14 @@ namespace FoodApplication.Controllers
                 P_Name = food.P_Name,
                 P_image = food.P_image.FileName,
             };
-            AlterFoodImage(null, food.P_image);
+            AlterFoodImage(null, food.P_image); //add image of  food in its folder
             FoodDB.Products.Add(addFood);
             FoodDB.SaveChanges();
-            ViewBag.Userdata = DataUser.user;
+            ViewBag.Userdata = DataUser.user; //make sseion  to user
             return View();
         }
         [HttpGet]
-        public ActionResult EditFood(string id)
+        public ActionResult EditFood(string id) 
         {
             ViewBag.Userdata = DataUser.user;
             Product editFood = new Product();
@@ -102,7 +102,7 @@ namespace FoodApplication.Controllers
                 if (id != null)
                 {
 
-                    editFood = FoodDB.Products.Find(int.Parse(id));
+                    editFood = FoodDB.Products.Find(int.Parse(id)); 
                     ViewBag.EditFood = editFood;
 
 
@@ -122,18 +122,22 @@ namespace FoodApplication.Controllers
         {
 
             Product alterFood = new Product();
-            alterFood = FoodDB.Products.Find(int.Parse(editFood.P_ID));
+            alterFood = FoodDB.Products.Find(int.Parse(editFood.P_ID));  //get food data to edit it
+
+            //check view data if he  take  any input  by  null
             alterFood.P_Name = editFood.P_Name != null ? editFood.P_Name : alterFood.P_Name;
             alterFood.P_price = editFood.P_price != null ? editFood.P_price : alterFood.P_price;
             alterFood.P_image = editFood.P_image != null ? EditFoodImage(alterFood.P_image, editFood.P_image) : alterFood.P_image;
-            FoodDB.Entry(alterFood).State = EntityState.Modified;
+            //check view data if he  take  any input  by  null
+
+            FoodDB.Entry(alterFood).State = EntityState.Modified; //update data of  food
             FoodDB.SaveChanges();
             ViewBag.Userdata = DataUser.user;
 
 
             return RedirectToAction("../Home/Index");
         }
-        public string EditFoodImage([Optional] string OldDataImage, [Optional] HttpPostedFileBase newDataimage)
+        public string EditFoodImage([Optional] string OldDataImage, [Optional] HttpPostedFileBase newDataimage) //update image if  he add new image  and delete old image
         {
             if (newDataimage != null)
             {

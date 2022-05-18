@@ -19,12 +19,12 @@ namespace FoodApplication.Controllers
         public AlterController()
         {
 
-            AlterDB = new FoodDataBaseEntities();
+            AlterDB = new FoodDataBaseEntities(); // make  object from database
 
         }
         public ActionResult AlterUserData()
         {
-            ViewBag.Userdata = DataUser.user;
+            ViewBag.Userdata = DataUser.user; //make seion time  to use it in view of this action
             if (DataUser.user.IsLogin)
             {
 
@@ -37,13 +37,16 @@ namespace FoodApplication.Controllers
         [HttpPost]
         public ActionResult AlterUserData(ViewUser EditUser)
         {
-
+            //update data view
             DataUser.user.U_email = EditUser.U_email != null ? EditUser.U_email : DataUser.user.U_email;
             DataUser.user.U_Name = EditUser.U_Name != null ? EditUser.U_Name : DataUser.user.U_Name;
             DataUser.user.U_password = EditUser.U_password != null ? EditUser.U_password : DataUser.user.U_password;
             DataUser.user.U_Manger = EditUser.U_Manger != null ? EditUser.U_Manger : DataUser.user.U_Manger;
             DataUser.user.U_image = EditUser.U_image != null ? checkImageData(EditUser.U_image, DataUser.user.U_image) : DataUser.user.U_image;
-            UpdateUserData();
+            //update data on view
+
+
+            UpdateUserData(); //insert new data of user database
 
 
 
@@ -52,12 +55,12 @@ namespace FoodApplication.Controllers
 
 
 
-            ViewBag.Userdata = DataUser.user;
+            ViewBag.Userdata = DataUser.user; //make seion time  to use it in view of this action
 
 
             return View();
         }
-        public string checkImageData(HttpPostedFileBase NewImage, string oldImage)
+        public string checkImageData(HttpPostedFileBase NewImage, string oldImage)  //update image if  he add new image  and delete old image
         {
 
             if (NewImage != null)
